@@ -1,33 +1,60 @@
-# API Gateway - Microservices by Bits and Bytes
+# API Gateway Service
 
-## Overview
+This service acts as the API Gateway for your microservices architecture, providing a single entry point for all client requests and routing them to the appropriate backend services.
 
-This project is a Spring Cloud Gateway application that acts as an API Gateway for a microservices architecture. It provides routing, rate limiting, and centralized entry point for all client requests to backend microservices.
+---
 
-## Features
-
-- **Routing:** Forwards client requests to appropriate microservices.
-- **Rate Limiting:** Uses Redis to limit the number of requests per client IP.
-- **Key Resolver:** Identifies clients by their IP address for rate limiting.
-- **Centralized Logging:** Logs incoming requests and errors for monitoring and debugging.
-- **Extensible Filters:** Easily add custom filters for authentication, logging, etc.
-
-## Technologies Used
-
-- Java version 17
-- Spring Boot
+## Tech Stack
+- Java 17
+- Spring Boot (WebFlux)
 - Spring Cloud Gateway
-- Redis (for rate limiting)
+- Spring Cloud Netflix Eureka Client
+- Redis (Reactive)
+- Resilience4j (Circuit Breaker)
 - Maven
 
-## Getting Started
+---
 
-### Prerequisites
+## Features
+- **API Gateway Pattern:** Central entry point for all microservices.
+- **Dynamic Routing:** Forwards requests to backend services based on route configuration.
+- **Service Discovery:** Integrates with Eureka to discover and route to registered services.
+- **Circuit Breaker:** Uses Resilience4j to provide fault tolerance and fallback mechanisms.
+- **Fallback Endpoints:** Returns user-friendly messages when backend services are unavailable (e.g., `/fallback/product`).
+- **Reactive Programming:** Built with WebFlux for high concurrency and scalability.
+- **Redis Integration:** Supports caching or rate limiting using reactive Redis.
 
-- Java 17 or higher
-- Maven 3.6+
-- Redis server running locally or accessible remotely
+---
 
-### Setup
+## Setup
+1. Clone the repository.
+2. Navigate to the `apiGatway` directory.
+3. Build the project:
+   ```bash
+   mvn clean install
+   ```
+4. Run the application:
+   ```bash
+   mvn spring-boot:run
+   ```
+5. Configure routes and gateway rules in `src/main/resources/application.yml` or `application.properties` as needed.
 
-1. **Clone the repository:**
+---
+
+## Example Fallback Endpoint
+- **GET /fallback/product**
+  - Returns a message if the Product Service is unavailable.
+  - Response: `Product Service is currently unavailable. Please try again later.`
+
+---
+
+## Usage
+- The API Gateway will automatically discover and route to services registered with Eureka.
+- Add or modify routes in the configuration files to control how requests are forwarded.
+- Use fallback endpoints to provide graceful error handling for users.
+
+---
+
+## License
+This project is for demonstration and educational purposes.
+

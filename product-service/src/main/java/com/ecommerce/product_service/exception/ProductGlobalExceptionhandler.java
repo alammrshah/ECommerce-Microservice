@@ -21,16 +21,16 @@ public class ProductGlobalExceptionhandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
-        @ExceptionHandler(ProductException.class)
-        public ResponseEntity<ErrorResponse> handlePaymentFunctionalException(ProductException ex) {
-        log.warn("PaymentFunctionalException occurred: {} - {}", ex.getErrorCode(), ex.getErrorMessage(), ex);
-        ErrorResponse error = new ErrorResponse(
-                ex.getErrorCode(),
-                ex.getErrorMessage(),
-                ex.getTimestamp()
-        );
-        return new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
+//        @ExceptionHandler(ProductException.class)
+//        public ResponseEntity<ErrorResponse> handlePaymentFunctionalException(ProductException ex) {
+//        log.warn("PaymentFunctionalException occurred: {} - {}", ex.getErrorCode(), ex.getErrorMessage(), ex);
+//        ErrorResponse error = new ErrorResponse(
+//                ex.getErrorCode(),
+//                ex.getErrorMessage(),
+//                ex.getTimestamp()
+//        );
+//        return new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
+//    }
 
         // Catch-all for any other exceptions
         @ExceptionHandler(Exception.class)
